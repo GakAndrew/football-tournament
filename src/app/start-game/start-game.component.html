@@ -1,0 +1,20 @@
+<p>start-game</p>
+
+<mat-form-field>
+  <mat-label>Choose an mode</mat-label>
+  <mat-select [(ngModel)]="selectedRule" name="car">
+    @for (rule of rules; track rule) {
+    <mat-option [value]="rule">{{rule}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Choose an option</mat-label>
+  <mat-select [(ngModel)]="countUsers" name="car">
+    @for (user of numberOfUsers; track user) {
+    <mat-option [value]="user">{{user}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<button class="mat-raised-button" (click)="generateTeams()">Генерация команд</button>
