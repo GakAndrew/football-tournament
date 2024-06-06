@@ -1,243 +1,487 @@
-export enum League {
-  PremierLeague = "Premier League",
-  LaLiga = "La Liga",
-  Bundesliga = "Bundesliga",
-  SerieA = "Serie A",
-  Ligue1 = "Ligue 1"
-}
+export type League = 'Premier League' | 'LaLiga' | 'Bundesliga' | 'Serie A' | 'Ligue 1';
 
 export interface Team {
-  name: string;
-  logo: string;
-  league: League;
-  country: string;
-  flag: string;
-  stars: number;
-  attack: number;
-  midfield: number;
-  defense: number;
+  name?: string;
+  logo?: string;
+  league?: League;
+  country?: string;
+  flag?: string;
+  stars?: number;
+  attack?: number;
+  midfield?: number;
+  defense?: number;
 }
 
-export const teams: Team[] = [
+export interface LeagueTeams {
+  name: League;
+  country: string;
+  teams: Team[];
+}
+
+// export const leaguesData: LeagueTeams[] = [
+//   {
+//     "name": "Premier League",
+//     "country": "England",
+//     "teams": [
+//       {
+//         "name": "Manchester City",
+//         "logo": "https://cdn.sofifa.net/meta/team/9/60.png",
+//         "stars": 5,
+//         "attack": 87,
+//         "midfield": 86,
+//         "defense": 83
+//       },
+//       {
+//         "name": "Liverpool",
+//         "logo": "https://cdn.sofifa.net/meta/team/6/60.png",
+//         "stars": 5,
+//         "attack": 84,
+//         "midfield": 82,
+//         "defense": 84
+//       },
+//       {
+//         "name": "Arsenal",
+//         "logo": "https://cdn.sofifa.net/meta/team/1/60.png",
+//         "stars": 5,
+//         "attack": 82,
+//         "midfield": 84,
+//         "defense": 81
+//       },
+//       {
+//         "name": "Manchester United",
+//         "logo": "https://cdn.sofifa.net/meta/team/11/60.png",
+//         "stars": 82,
+//         "attack": 82,
+//         "midfield": 83,
+//         "defense": 80
+//       },
+//       {
+//         "name": "Tottenham Hotspur",
+//         "logo": "https://cdn.sofifa.net/meta/team/18/60.png",
+//         "stars": 81,
+//         "attack": 83,
+//         "midfield": 80,
+//         "defense": 80
+//       }
+//     ]
+//   },
+//   {
+//     "name": "LaLiga",
+//     "country": "Spain",
+//     "teams": [
+//       {
+//         "name": "Real Madrid",
+//         "logo": "https://cdn.sofifa.net/meta/team/19/60.png",
+//         "stars": 85,
+//         "attack": 85,
+//         "midfield": 85,
+//         "defense": 83
+//       },
+//       {
+//         "name": "FC Barcelona",
+//         "logo": "https://cdn.sofifa.net/meta/team/8/60.png",
+//         "stars": 84,
+//         "attack": 84,
+//         "midfield": 84,
+//         "defense": 83
+//       },
+//       {
+//         "name": "Atlético de Madrid",
+//         "logo": "https://cdn.sofifa.net/meta/team/8/60.png",
+//         "stars": 83,
+//         "attack": 85,
+//         "midfield": 82,
+//         "defense": 81
+//       },
+//       {
+//         "name": "Sevilla FC",
+//         "logo": "https://cdn.sofifa.net/meta/team/15/60.png",
+//         "stars": 81,
+//         "attack": 82,
+//         "midfield": 81,
+//         "defense": 80
+//       },
+//       {
+//         "name": "Real Sociedad",
+//         "logo": "https://cdn.sofifa.net/meta/team/16/60.png",
+//         "stars": 81,
+//         "attack": 81,
+//         "midfield": 80,
+//         "defense": 80
+//       }
+//     ]
+//   },
+//   {
+//     "name": "Bundesliga",
+//     "country": "Germany",
+//     "teams": [
+//       {
+//         "name": "FC Bayern München",
+//         "logo": "https://cdn.sofifa.net/meta/team/21/60.png",
+//         "stars": 85,
+//         "attack": 86,
+//         "midfield": 85,
+//         "defense": 83
+//       },
+//       {
+//         "name": "Borussia Dortmund",
+//         "logo": "https://cdn.sofifa.net/meta/team/22/60.png",
+//         "stars": 82,
+//         "attack": 84,
+//         "midfield": 82,
+//         "defense": 80
+//       },
+//       {
+//         "name": "RB Leipzig",
+//         "logo": "https://cdn.sofifa.net/meta/team/23/60.png",
+//         "stars": 81,
+//         "attack": 82,
+//         "midfield": 81,
+//         "defense": 80
+//       },
+//       {
+//         "name": "Bayer 04 Leverkusen",
+//         "logo": "https://cdn.sofifa.net/meta/team/24/60.png",
+//         "stars": 80,
+//         "attack": 81,
+//         "midfield": 80,
+//         "defense": 79
+//       },
+//       {
+//         "name": "Eintracht Frankfurt",
+//         "logo": "https://cdn.sofifa.net/meta/team/25/60.png",
+//         "stars": 79,
+//         "attack": 80,
+//         "midfield": 79,
+//         "defense": 78
+//       }
+//     ]
+//   },
+//   {
+//     "name": "Serie A",
+//     "country": "Italy",
+//     "teams": [
+//       {
+//         "name": "Inter",
+//         "logo": "https://cdn.sofifa.net/meta/team/10/60.png",
+//         "stars": 84,
+//         "attack": 85,
+//         "midfield": 84,
+//         "defense": 83
+//       },
+//       {
+//         "name": "Juventus",
+//         "logo": "https://cdn.sofifa.net/meta/team/13/60.png",
+//         "stars": 84,
+//         "attack": 84,
+//         "midfield": 83,
+//         "defense": 83
+//       },
+//       {
+//         "name": "AC Milan",
+//         "logo": "https://cdn.sofifa.net/meta/team/14/60.png",
+//         "stars": 82,
+//         "attack": 83,
+//         "midfield": 82,
+//         "defense": 80
+//       },
+//       {
+//         "name": "Napoli",
+//         "logo": "https://cdn.sofifa.net/meta/team/15/60.png",
+//         "stars": 82,
+//         "attack": 83,
+//         "midfield": 82,
+//         "defense": 80
+//       },
+//       {
+//         "name": "AS Roma",
+//         "logo": "https://cdn.sofifa.net/meta/team/16/60.png",
+//         "stars": 81,
+//         "attack": 82,
+//         "midfield": 81,
+//         "defense": 80
+//       }
+//     ]
+//   },
+//   {
+//     "name": "Ligue 1",
+//     "country": "France",
+//     "teams": [
+//       {
+//         "name": "Paris Saint-Germain",
+//         "logo": "https://cdn.sofifa.net/meta/team/18/60.png",
+//         "stars": 85,
+//         "attack": 86,
+//         "midfield": 85,
+//         "defense": 83
+//       },
+//       {
+//         "name": "Olympique Lyonnais",
+//         "logo": "https://cdn.sofifa.net/meta/team/17/60.png",
+//         "stars": 81,
+//         "attack": 82,
+//         "midfield": 81,
+//         "defense": 80
+//       },
+//       {
+//         "name": "Olympique de Marseille",
+//         "logo": "https://cdn.sofifa.net/meta/team/19/60.png",
+//         "stars": 80,
+//         "attack": 81,
+//         "midfield": 80,
+//         "defense": 79
+//       },
+//       {
+//         "name": "AS Monaco",
+//         "logo": "https://cdn.sofifa.net/meta/team/20/60.png",
+//         "stars": 80,
+//         "attack": 81,
+//         "midfield": 80,
+//         "defense": 79
+//       },
+//       {
+//         "name": "Lille OSC",
+//         "logo": "https://cdn.sofifa.net/meta/team/21/60.png",
+//         "stars": 79,
+//         "attack": 80,
+//         "midfield": 79,
+//         "defense": 78
+//       }
+//     ]
+//   }
+// ]
+export const leaguesData: LeagueTeams[] = [
   {
-    name: "Manchester City",
-    logo: "https://cdn.sofifa.net/meta/team/9/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 86,
-    midfield: 87,
-    defense: 84
+    "name": "Premier League",
+    "country": "England",
+    "teams": [
+      {
+        "name": "Manchester City",
+        "logo": "https://cdn.sofifa.net/meta/team/9/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 5,
+        "attack": 87,
+        "midfield": 86,
+        "defense": 83
+      },
+      {
+        "name": "Liverpool",
+        "logo": "https://cdn.sofifa.net/meta/team/6/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 4.5,
+        "attack": 84,
+        "midfield": 82,
+        "defense": 84
+      },
+      {
+        "name": "Arsenal",
+        "logo": "https://cdn.sofifa.net/meta/team/1/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 4.5,
+        "attack": 82,
+        "midfield": 84,
+        "defense": 81
+      },
+      {
+        "name": "Manchester United",
+        "logo": "https://cdn.sofifa.net/meta/team/11/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 4.5,
+        "attack": 82,
+        "midfield": 83,
+        "defense": 80
+      },
+      {
+        "name": "Tottenham Hotspur",
+        "logo": "https://cdn.sofifa.net/meta/team/18/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 4,
+        "attack": 83,
+        "midfield": 80,
+        "defense": 80
+      }
+    ]
   },
   {
-    name: "Arsenal",
-    logo: "https://cdn.sofifa.net/meta/team/19/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 83,
-    midfield: 85,
-    defense: 81
+    "name": "LaLiga",
+    "country": "Spain",
+    "teams": [
+      {
+        "name": "Real Madrid",
+        "logo": "https://cdn.sofifa.net/meta/team/243/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 5,
+        "attack": 85,
+        "midfield": 85,
+        "defense": 83
+      },
+      {
+        "name": "FC Barcelona",
+        "logo": "https://cdn.sofifa.net/meta/team/241/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 4.5,
+        "attack": 84,
+        "midfield": 84,
+        "defense": 83
+      },
+      {
+        "name": "Atlético de Madrid",
+        "logo": "https://cdn.sofifa.net/meta/team/240/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 4.5,
+        "attack": 85,
+        "midfield": 82,
+        "defense": 81
+      },
+      {
+        "name": "Sevilla FC",
+        "logo": "https://cdn.sofifa.net/meta/team/481/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 81,
+        "defense": 80
+      },
+      {
+        "name": "Real Sociedad",
+        "logo": "https://cdn.sofifa.net/meta/team/457/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 4,
+        "attack": 81,
+        "midfield": 80,
+        "defense": 80
+      }
+    ]
   },
   {
-    name: "Liverpool",
-    logo: "https://cdn.sofifa.net/meta/team/8/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 84,
-    midfield: 81,
-    defense: 84
+    "name": "Bundesliga",
+    "country": "Germany",
+    "teams": [
+      {
+        "name": "FC Bayern München",
+        "logo": "https://cdn.sofifa.net/meta/team/21/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 5,
+        "attack": 86,
+        "midfield": 85,
+        "defense": 83
+      },
+      {
+        "name": "Borussia Dortmund",
+        "logo": "https://cdn.sofifa.net/meta/team/22/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4.5,
+        "attack": 84,
+        "midfield": 82,
+        "defense": 80
+      },
+      {
+        "name": "RB Leipzig",
+        "logo": "https://cdn.sofifa.net/meta/team/112172/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 81,
+        "defense": 80
+      },
+      {
+        "name": "Bayer 04 Leverkusen",
+        "logo": "https://cdn.sofifa.net/meta/team/27/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4,
+        "attack": 81,
+        "midfield": 80,
+        "defense": 79
+      },
+      {
+        "name": "Eintracht Frankfurt",
+        "logo": "https://cdn.sofifa.net/meta/team/1824/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4,
+        "attack": 80,
+        "midfield": 79,
+        "defense": 78
+      }
+    ]
   },
   {
-    name: "Aston Villa",
-    logo: "https://cdn.sofifa.net/meta/team/15/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4.5,
-    attack: 83,
-    midfield: 79,
-    defense: 78
-  },
-  {
-    name: "Manchester United",
-    logo: "https://cdn.sofifa.net/meta/team/14/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 78,
-    midfield: 79,
-    defense: 81
-  },
-  {
-    name: "Tottenham Hotspur",
-    logo: "https://cdn.sofifa.net/meta/team/6/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 83,
-    midfield: 80,
-    defense: 80
-  },
-  {
-    name: "Chelsea",
-    logo: "https://cdn.sofifa.net/meta/team/18/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 77,
-    midfield: 78,
-    defense: 79
-  },
-  {
-    name: "Newcastle United",
-    logo: "https://cdn.sofifa.net/meta/team/20/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 80,
-    midfield: 76,
-    defense: 73
-  },
-  {
-    name: "West Ham United",
-    logo: "https://cdn.sofifa.net/meta/team/1/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 79,
-    midfield: 79,
-    defense: 78
-  },
-  {
-    name: "Crystal Palace",
-    logo: "https://cdn.sofifa.net/meta/team/51/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 75,
-    midfield: 76,
-    defense: 75
-  },
-  {
-    name: "Nottingham Forest",
-    logo: "https://cdn.sofifa.net/meta/team/63/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 3,
-    attack: 75,
-    midfield: 76,
-    defense: 74
-  },
-  {
-    name: "Brighton & Hove Albion",
-    logo: "https://cdn.sofifa.net/meta/team/78/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 75,
-    midfield: 74,
-    defense: 76
-  },
-  {
-    name: "Wolverhampton Wanderers",
-    logo: "https://cdn.sofifa.net/meta/team/29/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 3,
-    attack: 78,
-    midfield: 77,
-    defense: 76
-  },
-  {
-    name: "Brentford",
-    logo: "https://cdn.sofifa.net/meta/team/236/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 77,
-    midfield: 75,
-    defense: 76
-  },
-  {
-    name: "Fulham",
-    logo: "https://cdn.sofifa.net/meta/team/11/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 72,
-    midfield: 77,
-    defense: 76
-  },
-  {
-    name: "Everton",
-    logo: "https://cdn.sofifa.net/meta/team/13/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 3,
-    attack: 77,
-    midfield: 76,
-    defense: 75
-  },
-  {
-    name: "AFC Bournemouth",
-    logo: "https://cdn.sofifa.net/meta/team/52/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 79,
-    midfield: 75,
-    defense: 74
-  },
-  {
-    name: "Burnley",
-    logo: "https://cdn.sofifa.net/meta/team/27/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 3,
-    attack: 72,
-    midfield: 74,
-    defense: 73
-  },
-  {
-    name: "Sheffield United",
-    logo: "https://cdn.sofifa.net/meta/team/21/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 4,
-    attack: 73,
-    midfield: 71,
-    defense: 71
-  },
-  {
-    name: "Luton Town",
-    logo: "https://cdn.sofifa.net/meta/team/115/60.png",
-    league: League.PremierLeague,
-    country: "England",
-    flag: "https://cdn.sofifa.net/flags/gb-eng.png",
-    stars: 5,
-    attack: 71,
-    midfield: 72,
-    defense: 71
+    "name": "Serie A",
+    "country": "Italy",
+    "teams": [
+      {
+        "name": "Inter",
+        "logo": "https://cdn.sofifa.net/meta/team/44/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 5,
+        "attack": 85,
+        "midfield": 84,
+        "defense": 83
+      },
+      {
+        "name": "Juventus",
+        "logo": "https://cdn.sofifa.net/meta/team/45/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 4.5,
+        "attack": 84,
+        "midfield": 83,
+        "defense": 83
+      },
+      {
+        "name": "AC Milan",
+        "logo": "https://cdn.sofifa.net/meta/team/47/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 4.5,
+        "attack": 83,
+        "midfield": 82,
+        "defense": 80
+      },
+      {
+        "name": "Napoli",
+        "logo": "https://cdn.sofifa.net/meta/team/48/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 80,
+        "defense": 78
+      }
+    ]
   }
 ];
-
