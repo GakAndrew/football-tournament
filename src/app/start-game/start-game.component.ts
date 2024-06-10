@@ -1,3 +1,4 @@
+import { routes } from './../app.routes';
 import { ClubService } from './../../shared-lib/services/club.service';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
@@ -5,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-game',
@@ -20,7 +22,9 @@ export class StartGameComponent {
   numberOfUsers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   countUsers = 0;
 
-  constructor(private clubService: ClubService) {
+  constructor(private clubService: ClubService,
+    private routes: Router,
+  ) {
 
   }
 
@@ -28,5 +32,6 @@ export class StartGameComponent {
     this.clubService.countUsers = this.countUsers;
     this.clubService.rule = this.selectedRule;
     this.clubService.generateClubBuRule();
+    this.routes.navigate(['/info']);
   }
 }

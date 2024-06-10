@@ -1,0 +1,11 @@
+<div>
+  @for (user of users; track $index) {
+  <h3>{{user.name}}</h3>
+  @for (team of user.teams; track $index) {
+  <p> </p>
+  <p>{{team.name}}</p>
+  }
+  }
+</div>
+
+<button mat-raised-button color="primary" (click)="goBack()">back</button>

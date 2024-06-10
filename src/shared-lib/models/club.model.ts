@@ -267,6 +267,39 @@ export const leaguesData: LeagueTeams[] = [
         "defense": 83
       },
       {
+        "name": "AndrewG",
+        "logo": "https://cdn.sofifa.net/meta/team/9/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 5,
+        "attack": 87,
+        "midfield": 86,
+        "defense": 83
+      },
+      {
+        "name": "RomanG",
+        "logo": "https://cdn.sofifa.net/meta/team/9/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 5,
+        "attack": 87,
+        "midfield": 86,
+        "defense": 83
+      },
+      {
+        "name": "OlegG",
+        "logo": "https://cdn.sofifa.net/meta/team/9/60.png",
+        "league": "Premier League",
+        "country": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "stars": 5,
+        "attack": 87,
+        "midfield": 86,
+        "defense": 83
+      },
+      {
         "name": "Liverpool",
         "logo": "https://cdn.sofifa.net/meta/team/6/60.png",
         "league": "Premier League",
@@ -361,6 +394,28 @@ export const leaguesData: LeagueTeams[] = [
         "defense": 80
       },
       {
+        "name": "Sevilla FC2",
+        "logo": "https://cdn.sofifa.net/meta/team/481/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 81,
+        "defense": 80
+      },
+      {
+        "name": "Sevilla FC3",
+        "logo": "https://cdn.sofifa.net/meta/team/481/60.png",
+        "league": "LaLiga",
+        "country": "Spain",
+        "flag": "https://cdn.sofifa.net/flags/es.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 81,
+        "defense": 80
+      },
+      {
         "name": "Real Sociedad",
         "logo": "https://cdn.sofifa.net/meta/team/457/60.png",
         "league": "LaLiga",
@@ -389,12 +444,78 @@ export const leaguesData: LeagueTeams[] = [
         "defense": 83
       },
       {
+        "name": "FC Bayern München1",
+        "logo": "https://cdn.sofifa.net/meta/team/21/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 5,
+        "attack": 86,
+        "midfield": 85,
+        "defense": 83
+      },
+      {
+        "name": "FC Bayern München2",
+        "logo": "https://cdn.sofifa.net/meta/team/21/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4.5,
+        "attack": 86,
+        "midfield": 85,
+        "defense": 83
+      },
+      {
+        "name": "FC Bayern München3",
+        "logo": "https://cdn.sofifa.net/meta/team/21/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4.5,
+        "attack": 86,
+        "midfield": 85,
+        "defense": 83
+      },
+      {
         "name": "Borussia Dortmund",
         "logo": "https://cdn.sofifa.net/meta/team/22/60.png",
         "league": "Bundesliga",
         "country": "Germany",
         "flag": "https://cdn.sofifa.net/flags/de.png",
         "stars": 4.5,
+        "attack": 84,
+        "midfield": 82,
+        "defense": 80
+      },
+      {
+        "name": "asdgasdgsadgasdgsadg",
+        "logo": "https://cdn.sofifa.net/meta/team/22/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4.5,
+        "attack": 84,
+        "midfield": 82,
+        "defense": 80
+      },
+      {
+        "name": "clubs gay",
+        "logo": "https://cdn.sofifa.net/meta/team/22/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4,
+        "attack": 84,
+        "midfield": 82,
+        "defense": 80
+      },
+      {
+        "name": "pro gayClub",
+        "logo": "https://cdn.sofifa.net/meta/team/22/60.png",
+        "league": "Bundesliga",
+        "country": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "stars": 4,
         "attack": 84,
         "midfield": 82,
         "defense": 80
@@ -461,6 +582,28 @@ export const leaguesData: LeagueTeams[] = [
         "defense": 83
       },
       {
+        "name": "JuventusAAA",
+        "logo": "https://cdn.sofifa.net/meta/team/45/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 5,
+        "attack": 84,
+        "midfield": 83,
+        "defense": 83
+      },
+      {
+        "name": "JuventusBBB",
+        "logo": "https://cdn.sofifa.net/meta/team/45/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 5,
+        "attack": 84,
+        "midfield": 83,
+        "defense": 83
+      },
+      {
         "name": "AC Milan",
         "logo": "https://cdn.sofifa.net/meta/team/47/60.png",
         "league": "Serie A",
@@ -473,6 +616,28 @@ export const leaguesData: LeagueTeams[] = [
       },
       {
         "name": "Napoli",
+        "logo": "https://cdn.sofifa.net/meta/team/48/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 80,
+        "defense": 78
+      },
+      {
+        "name": "Napoli2",
+        "logo": "https://cdn.sofifa.net/meta/team/48/60.png",
+        "league": "Serie A",
+        "country": "Italy",
+        "flag": "https://cdn.sofifa.net/flags/it.png",
+        "stars": 4,
+        "attack": 82,
+        "midfield": 80,
+        "defense": 78
+      },
+      {
+        "name": "Napoli3",
         "logo": "https://cdn.sofifa.net/meta/team/48/60.png",
         "league": "Serie A",
         "country": "Italy",

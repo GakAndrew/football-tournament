@@ -18,7 +18,6 @@ export class ClubService {
   generateClubBuRule(): User[] {
     this.users = this.generateUsers();
     if (this.rule === 'Rules of stars') {
-      debugger;
       this.assignTeamsToUsers(this.users);
     }
 
@@ -36,13 +35,24 @@ export class ClubService {
   }
 
   private assignTeamsToUsers(users: User[]): void {
+    let usedTeams = new Set<Team>();
+
     users.forEach(user => {
       let leaguesCopy = [...this.clubs];
 
-      let starRanges = [{ max: 5, min: 4.5 }, { max: 4.5, min: 4 }, { max: 4, min: 0 }];
+      const starRanges = [
+        { max: 5, min: 4.5 },
+        { max: 4.5, min: 4 },
+        { max: 4, min: 0 }
+      ];
+
       starRanges.forEach(starRange => {
         const availableLeagues = leaguesCopy.filter(league =>
-          league.teams.some(team => team.stars <= starRange.max && team.stars > starRange.min)
+          league.teams.some(team =>
+            team.stars <= starRange.max &&
+            team.stars > starRange.min &&
+            !usedTeams.has(team)
+          )
         );
 
         if (availableLeagues.length > 0) {
@@ -50,16 +60,19 @@ export class ClubService {
           const selectedLeague = availableLeagues[selectedLeagueIndex];
 
           const availableTeams = selectedLeague.teams.filter(team =>
-            team.stars <= starRange.max && team.stars > starRange.min
+            team.stars <= starRange.max &&
+            team.stars > starRange.min &&
+            !usedTeams.has(team)
           );
 
-          const selectedTeamIndex = Math.floor(Math.random() * availableTeams.length);
-          const selectedTeam = availableTeams[selectedTeamIndex];
+          if (availableTeams.length > 0) {
+            const selectedTeamIndex = Math.floor(Math.random() * availableTeams.length);
+            const selectedTeam = availableTeams[selectedTeamIndex];
 
-          user.teams.push(selectedTeam);
-          leaguesCopy = leaguesCopy.filter(l => l !== selectedLeague);
-        } else {
-          // Если нет доступных лиг, можно выбрать команду из других диапазонов
+            user.teams.push(selectedTeam);
+            usedTeams.add(selectedTeam);
+            leaguesCopy = leaguesCopy.filter(l => l !== selectedLeague);
+          }
         }
       });
     });
