@@ -23,23 +23,11 @@ export class UserInfoComponent implements OnInit {
     return this.clubService.getAllTeams();
   }
 
-  cities!: City[];
-
-    selectedCities!: City[];
-
 
   constructor(private clubService: ClubService, private routes: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.users = this.clubService.users;
-    this.cities = [
-            {name: 'New York', code: 'NY'},
-            {name: 'Rome', code: 'RM'},
-            {name: 'London', code: 'LDN'},
-            {name: 'Istanbul', code: 'IST'},
-            {name: 'Paris', code: 'PRS'}
-        ];
-
   }
 
   getAvailableTeams(team: Team): boolean {
