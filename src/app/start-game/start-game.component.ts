@@ -19,8 +19,9 @@ import { Router } from '@angular/router';
 export class StartGameComponent {
   rules = ['Rules of stars', 'Rules ...', 'Rules of .'];
   selectedRule = '';
-  numberOfUsers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+  numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   countUsers = 0;
+  countClubs = 0;
 
   constructor(private clubService: ClubService,
     private routes: Router,
@@ -31,6 +32,7 @@ export class StartGameComponent {
   generateTeams() {
     this.clubService.countUsers = this.countUsers;
     this.clubService.rule = this.selectedRule;
+    this.clubService.countClubs = this.countClubs;
     this.clubService.generateClubBuRule();
     this.routes.navigate(['/info']);
   }

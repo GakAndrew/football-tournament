@@ -11,7 +11,14 @@
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Кол-во пользователей</mat-label>
     <mat-select [(ngModel)]="countUsers" name="userCount">
-      <mat-option *ngFor="let user of numberOfUsers;" [value]="user">{{user}}</mat-option>
+      <mat-option *ngFor="let number of numbers;" [value]="number">{{number}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Кол-во команд участника</mat-label>
+    <mat-select [(ngModel)]="countClubs" name="userCount">
+      <mat-option *ngFor="let number of numbers;" [value]="number">{{number}}</mat-option>
     </mat-select>
   </mat-form-field>
 

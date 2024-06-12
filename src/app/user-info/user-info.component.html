@@ -1,15 +1,23 @@
 <div class="user-cards-container">
-  <mat-card *ngFor="let user of users;" class="user-card">
+  <mat-card *ngFor="let user of users" class="user-card">
     <mat-card-header>
       <mat-card-title>{{ user.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div *ngFor="let team of user.teams;" class="team-info">
-        <p>{{ team.name }}</p>
+      <div *ngFor="let team of user.teams; let i = index" class="team-info">
+        <mat-form-field appearance="fill">
+          <mat-label>Команда</mat-label>
+          <mat-select [value]="getClub(user.teams[i])" (selectionChange)="onTeamChange(user, i, $event.value)">
+            <mat-option *ngFor="let team of allTeams" [disabled]="getAvailableTeams(team)" [value]="team">
+              {{ team.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </mat-card-content>
   </mat-card>
 </div>
+
 
 
 <button mat-raised-button color="primary" (click)="goBack()">back</button>
