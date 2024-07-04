@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.mat-dialog-container {
+  background-color: #333 !important;
+  color: #fff !important;
+  padding: 20px !important;
+  border-radius: 8px !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.5em !important;
+  margin-bottom: 20px !important;
+}
+
+mat-form-field {
+  width: 100% !important;
+}
+
+.mat-dialog-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 20px !important;
+}
+
+button {
+  margin-left: 10px !important;
+  color: #333 !important;
+}
+
+button:hover {
+  background-color: #fff !important;
+}
+
+button[mat-button] {
+  color: #fff !important;
+}
+
+button[mat-button]:disabled {
+  color: rgba(255, 255, 255, 0.3) !important;
+}

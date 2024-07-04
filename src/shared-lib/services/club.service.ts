@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Team, leaguesData } from '../models/club.model';
 import { User } from '../models/user.model';
+import { Match } from '../models/match.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClubService {
   usedTeams = new Set<Team>();
@@ -13,18 +14,16 @@ export class ClubService {
   clubs = leaguesData;
   users: User[] = [];
 
-
-  constructor() {
-  }
-
   getAllTeams(): Team[] {
-    return this.clubs.flatMap(league => league.teams);
+    return this.clubs.flatMap((league) => league.teams);
   }
 
   getAvailableTeams(): Team[] {
-    const clubsFiltered = this.clubs.flatMap(league => league.teams).filter(team => !this.usedTeams.has(team))
+    const clubsFiltered = this.clubs
+      .flatMap((league) => league.teams)
+      .filter((team) => !this.usedTeams.has(team));
     return clubsFiltered;
-  };
+  }
 
   generateClubBuRule(): User[] {
     this.users = this.generateUsers();
@@ -36,11 +35,10 @@ export class ClubService {
   }
 
   swapTeam(user: User, oldTeam: Team, newTeam: Team): void {
-    user.teams = user.teams.map(team => team === oldTeam ? newTeam : team);
+    user.teams = user.teams.map((team) => (team === oldTeam ? newTeam : team));
     this.usedTeams.delete(oldTeam);
     this.usedTeams.add(newTeam);
   }
-
 
   private generateUsers(): User[] {
     const users: User[] = [];
@@ -52,14 +50,14 @@ export class ClubService {
   }
 
   private assignTeamsToUsers(users: User[]): void {
-    users.forEach(user => {
+    users.forEach((user) => {
       let leaguesCopy = [...this.clubs];
       let assignedTeams = 0;
 
       const starRanges = [
         { max: 5, min: 4.5 },
         { max: 4.5, min: 4 },
-        { max: 4, min: 0 }
+        { max: 4, min: 0 },
       ];
 
       while (assignedTeams < this.countClubs) {
@@ -68,31 +66,37 @@ export class ClubService {
         for (const starRange of starRanges) {
           if (assignedTeams >= this.countClubs) break;
 
-          const availableLeagues = leaguesCopy.filter(league =>
-            league.teams.some(team =>
-              team.stars <= starRange.max &&
-              team.stars > starRange.min &&
-              !this.usedTeams.has(team)
+          const availableLeagues = leaguesCopy.filter((league) =>
+            league.teams.some(
+              (team) =>
+                team.stars <= starRange.max &&
+                team.stars > starRange.min &&
+                !this.usedTeams.has(team)
             )
           );
 
           if (availableLeagues.length > 0) {
-            const selectedLeagueIndex = Math.floor(Math.random() * availableLeagues.length);
+            const selectedLeagueIndex = Math.floor(
+              Math.random() * availableLeagues.length
+            );
             const selectedLeague = availableLeagues[selectedLeagueIndex];
 
-            const availableTeams = selectedLeague.teams.filter(team =>
-              team.stars <= starRange.max &&
-              team.stars > starRange.min &&
-              !this.usedTeams.has(team)
+            const availableTeams = selectedLeague.teams.filter(
+              (team) =>
+                team.stars <= starRange.max &&
+                team.stars > starRange.min &&
+                !this.usedTeams.has(team)
             );
 
             if (availableTeams.length > 0) {
-              const selectedTeamIndex = Math.floor(Math.random() * availableTeams.length);
+              const selectedTeamIndex = Math.floor(
+                Math.random() * availableTeams.length
+              );
               const selectedTeam = availableTeams[selectedTeamIndex];
 
               user.teams.push(selectedTeam);
               this.usedTeams.add(selectedTeam);
-              leaguesCopy = leaguesCopy.filter(l => l !== selectedLeague);
+              leaguesCopy = leaguesCopy.filter((l) => l !== selectedLeague);
               assignedTeams++;
               teamAssignedInThisRound = true;
             }
