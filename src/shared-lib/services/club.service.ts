@@ -1,7 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Team, leaguesData } from '../models/club.model';
 import { User } from '../models/user.model';
-import { Match } from '../models/match.model';
+
+export interface Circle {
+  matches: Match[];
+}
+
+interface Match {
+  player1Name: string;
+  team1: Team;
+  player2Name: string;
+  team2: Team;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +23,81 @@ export class ClubService {
   rule = '';
   clubs = leaguesData;
   users: User[] = [];
+
+  private calculateMatches(players: number): number {
+    if (players < 2) {
+      return 0;
+    }
+    return (players * (players - 1)) / 2;
+  }
+
+  getRandomNumber(n: number): number {
+    return Math.floor(Math.random() * (n + 1));
+  }
+
+  generateMatch(users: User[], countClubs: number): Circle[] {
+    let circle: Circle[] = new Array(countClubs).fill(null).map(() => ({ matches: [] }));
+
+    for (let round = 0; round < countClubs; round++) {
+      let matches: Match[] = [];
+      let remainingUsers = [...users];
+
+      for (let matchIndex = 0; matchIndex < 3; matchIndex++) {
+        // Выбор игроков для матча
+        if (matchIndex === 0) {
+          // Первый матч
+          const user1 = remainingUsers[1];
+          const user2 = remainingUsers[2];
+
+          const team1 = user1.teams[round % user1.teams.length];
+          const team2 = user2.teams[round % user2.teams.length];
+
+          matches.push({
+            player1Name: user1.name,
+            team1: team1,
+            player2Name: user2.name,
+            team2: team2,
+          });
+
+        } else if (matchIndex === 1) {
+          // Победитель первого матча играет с первым игроком
+          const user1 = remainingUsers[0];
+          const user2 = remainingUsers[1]; // Предполагаем, что первый игрок всегда первый в списке
+
+          const team1 = user1.teams[round % user1.teams.length];
+          const team2 = user2.teams[round % user2.teams.length];
+
+          matches.push({
+            player1Name: user1.name,
+            team1: team1,
+            player2Name: user2.name,
+            team2: team2,
+          });
+
+        } else {
+          // Проигравший первого матча играет с первым игроком
+          const user1 = remainingUsers[0];
+          const user2 = remainingUsers[2];
+
+          const team1 = user1.teams[round % user1.teams.length];
+          const team2 = user2.teams[round % user2.teams.length];
+
+          matches.push({
+            player1Name: user1.name,
+            team1: team1,
+            player2Name: user2.name,
+            team2: team2,
+          });
+        }
+      }
+
+      circle[round].matches = matches.slice(); // Копируем массив матчей для текущего круга
+    }
+
+    console.log(circle);
+    return circle;
+  }
+
 
   getAllTeams(): Team[] {
     return this.clubs.flatMap((league) => league.teams);
