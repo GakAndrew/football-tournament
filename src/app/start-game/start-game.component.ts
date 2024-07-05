@@ -8,6 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
+interface Rules {
+  name: string;
+  available: boolean;
+}
+
 @Component({
   selector: 'app-start-game',
   standalone: true,
@@ -17,7 +22,20 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StartGameComponent {
-  rules = ['Rules of stars', 'Rules ...', 'Rules of .'];
+  rules: Rules[] = [
+    {
+      name: 'Rules of stars',
+      available: true,
+    },
+    {
+      name: 'Rules ...',
+      available: false,
+    },
+    {
+      name: 'Rules of .',
+      available: false,
+    }
+  ]
   selectedRule = '';
   numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   countUsers = 0;

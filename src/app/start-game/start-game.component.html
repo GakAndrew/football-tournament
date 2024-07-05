@@ -4,7 +4,7 @@
   <mat-form-field appearance="fill" class="form-field">
     <mat-label>Правила генерации</mat-label>
     <mat-select [(ngModel)]="selectedRule" name="mode">
-      <mat-option *ngFor="let rule of rules;" [value]="rule">{{rule}}</mat-option>
+      <mat-option *ngFor="let rule of rules;" [disabled]="!rule.available" [value]="rule.name">{{rule.name}}</mat-option>
     </mat-select>
   </mat-form-field>
 
