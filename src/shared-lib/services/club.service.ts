@@ -36,16 +36,16 @@ export class ClubService {
   }
 
   generateMatch(users: User[], countClubs: number): Circle[] {
-    let circle: Circle[] = new Array(countClubs).fill(null).map(() => ({ matches: [] }));
+    let circle: Circle[] = new Array(countClubs)
+      .fill(null)
+      .map(() => ({ matches: [] }));
 
     for (let round = 0; round < countClubs; round++) {
       let matches: Match[] = [];
       let remainingUsers = [...users];
 
       for (let matchIndex = 0; matchIndex < 3; matchIndex++) {
-        // Выбор игроков для матча
         if (matchIndex === 0) {
-          // Первый матч
           const user1 = remainingUsers[1];
           const user2 = remainingUsers[2];
 
@@ -58,11 +58,9 @@ export class ClubService {
             player2Name: user2.name,
             team2: team2,
           });
-
         } else if (matchIndex === 1) {
-          // Победитель первого матча играет с первым игроком
           const user1 = remainingUsers[0];
-          const user2 = remainingUsers[1]; // Предполагаем, что первый игрок всегда первый в списке
+          const user2 = remainingUsers[1];
 
           const team1 = user1.teams[round % user1.teams.length];
           const team2 = user2.teams[round % user2.teams.length];
@@ -73,9 +71,7 @@ export class ClubService {
             player2Name: user2.name,
             team2: team2,
           });
-
         } else {
-          // Проигравший первого матча играет с первым игроком
           const user1 = remainingUsers[0];
           const user2 = remainingUsers[2];
 
@@ -91,13 +87,12 @@ export class ClubService {
         }
       }
 
-      circle[round].matches = matches.slice(); // Копируем массив матчей для текущего круга
+      circle[round].matches = matches.slice();
     }
 
     console.log(circle);
     return circle;
   }
-
 
   getAllTeams(): Team[] {
     return this.clubs.flatMap((league) => league.teams);
