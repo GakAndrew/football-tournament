@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 interface Rules {
   name: string;
@@ -16,7 +17,7 @@ interface Rules {
 @Component({
   selector: 'app-start-game',
   standalone: true,
-  imports: [CommonModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule],
+  imports: [CommonModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
   templateUrl: './start-game.component.html',
   styleUrl: './start-game.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -51,7 +52,7 @@ export class StartGameComponent {
     this.clubService.countUsers = this.countUsers;
     this.clubService.rule = this.selectedRule;
     this.clubService.countClubs = this.countClubs;
-    this.clubService.generateClubBuRule();
+    this.clubService.generateClubByRule();
     this.routes.navigate(['/info']);
   }
 }

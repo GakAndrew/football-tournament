@@ -1,35 +1,88 @@
 /* match.component.css */
-.circle-container {
-    margin-bottom: 16px;
+.tournament-container {
+  padding: 24px;
+  background-color: #1e1e1e;
+  min-height: 100vh;
+}
+
+.tournament-title {
+  font-size: 2.5em;
+  color: #bb86fc;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.circles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.circle-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  mat-card-header {
+    background-color: #bb86fc;
+    padding: 16px;
+
+    mat-card-title {
+      color: #000000;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
   }
-  
-  .circle-card {
-    width: 100%;
+
+  mat-card-content {
+    padding: 16px;
   }
-  
-  .buttons-container {
+}
+
+.match-table {
+  width: 100%;
+  background-color: transparent;
+
+  th {
+    color: #bb86fc;
+    font-weight: bold;
+  }
+
+  td {
+    color: #ffffff;
+  }
+
+  .vs-column {
+    text-align: center;
+    font-weight: bold;
+    color: #bb86fc;
+  }
+
+  .team-info {
     display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-  }
-  
-  .responsive-table {
-    width: 100%;
-    overflow-x: auto;
-  }
-  
-  @media (max-width: 600px) {
-    .mat-card-title {
-      font-size: 14px;
+    flex-direction: column;
+
+    .team-name {
+      font-weight: bold;
     }
-  
-    th.mat-header-cell, td.mat-cell {
-      padding: 8px 12px;
-    }
-  
-    .buttons-container button {
-      flex: 1;
-      margin: 0 4px;
+
+    .player-name {
+      font-size: 0.9em;
+      color: #bb86fc;
     }
   }
-  
+}
+
+@media (max-width: 600px) {
+  .circle-card {
+    max-width: 100%;
+  }
+
+  .team-info {
+    font-size: 0.9em;
+  }
+}

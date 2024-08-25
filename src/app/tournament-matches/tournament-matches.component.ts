@@ -20,7 +20,7 @@ export class TournamentMatchesComponent implements OnInit {
   matches: Match[] = [];
   rounds: Match[][];
   circles: Circle[] = [];
-  displayedColumns: string[] = ['team1', 'team2'];
+  displayedColumns: string[] = ['team1', 'vs', 'team2'];
 
   constructor(private clubService: ClubService) {}
 

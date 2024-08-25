@@ -1,42 +1,42 @@
 <!-- match.component.html -->
-<div *ngFor="let circle of circles; let i = index" class="circle-container">
-  <mat-card class="circle-card">
-    <mat-card-header>
-      <mat-card-title>Круг {{ i + 1 }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <table
-        mat-table
-        [dataSource]="circle.matches"
-        class="mat-elevation-z8 responsive-table"
-      >
-        <!-- Player 1 Column -->
-        <!-- <ng-container matColumnDef="player1Name">
-          <th mat-header-cell *matHeaderCellDef>Игрок 1</th>
-          <td mat-cell *matCellDef="let match">{{ match.player1Name }}</td>
-        </ng-container> -->
+<div class="tournament-container">
+  <h2 class="tournament-title">Турнирная таблица</h2>
+  <div class="circles-container">
+    <mat-card *ngFor="let circle of circles; let i = index" class="circle-card">
+      <mat-card-header>
+        <mat-card-title>Круг {{ i + 1 }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="circle.matches" class="match-table">
+          <ng-container matColumnDef="team1">
+            <th mat-header-cell *matHeaderCellDef>Команда 1</th>
+            <td mat-cell *matCellDef="let match">
+              <div class="team-info">
+                <span class="team-name">{{ match.team1.name }}</span>
+                <span class="player-name">({{ match.player1Name }})</span>
+              </div>
+            </td>
+          </ng-container>
 
-        <!-- Team 1 Column -->
-        <ng-container matColumnDef="team1">
-          <th mat-header-cell *matHeaderCellDef>Команда 1</th>
-          <td mat-cell *matCellDef="let match">{{ match.team1.name }}</td>
-        </ng-container>
+          <ng-container matColumnDef="vs">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let match" class="vs-column">vs</td>
+          </ng-container>
 
-        <!-- Player 2 Column -->
-        <!-- <ng-container matColumnDef="player2Name">
-          <th mat-header-cell *matHeaderCellDef>Игрок 2</th>
-          <td mat-cell *matCellDef="let match">{{ match.player2Name }}</td>
-        </ng-container> -->
+          <ng-container matColumnDef="team2">
+            <th mat-header-cell *matHeaderCellDef>Команда 2</th>
+            <td mat-cell *matCellDef="let match">
+              <div class="team-info">
+                <span class="team-name">{{ match.team2.name }}</span>
+                <span class="player-name">({{ match.player2Name }})</span>
+              </div>
+            </td>
+          </ng-container>
 
-        <!-- Team 2 Column -->
-        <ng-container matColumnDef="team2">
-          <th mat-header-cell *matHeaderCellDef>Команда 2</th>
-          <td mat-cell *matCellDef="let match">{{ match.team2.name }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

@@ -1,21 +1,21 @@
 <div class="start-game-container">
-  <h2>Начало</h2>
+  <h2>Начало турнира</h2>
 
-  <mat-form-field appearance="fill" class="form-field">
+  <mat-form-field appearance="outline" class="form-field">
     <mat-label>Правила генерации</mat-label>
     <mat-select [(ngModel)]="selectedRule" name="mode">
       <mat-option *ngFor="let rule of rules;" [disabled]="!rule.available" [value]="rule.name">{{rule.name}}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="fill" class="form-field">
+  <mat-form-field appearance="outline" class="form-field">
     <mat-label>Кол-во пользователей</mat-label>
     <mat-select [(ngModel)]="countUsers" name="userCount">
       <mat-option *ngFor="let number of numbers;" [value]="number">{{number}}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="fill" class="form-field">
+  <mat-form-field appearance="outline" class="form-field">
     <mat-label>Кол-во команд участника</mat-label>
     <mat-select [(ngModel)]="countClubs" name="userCount">
       <mat-option *ngFor="let number of numbers;" [value]="number">{{number}}</mat-option>

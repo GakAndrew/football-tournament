@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SettingsSelectedGuard } from './guards/settings-selected.guard';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
       import('./user-info/user-info.component').then(
         (m) => m.UserInfoComponent
       ),
+    canActivate: [SettingsSelectedGuard]
   },
   {
     path: 'start',
@@ -21,5 +23,6 @@ export const routes: Routes = [
       import('./tournament-matches/tournament-matches.component').then(
         (m) => m.TournamentMatchesComponent
       ),
+    canActivate: [SettingsSelectedGuard]
   },
 ];

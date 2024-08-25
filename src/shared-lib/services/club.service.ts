@@ -17,7 +17,7 @@ interface Match {
   providedIn: 'root',
 })
 export class ClubService {
-  usedTeams = new Set<Team>();
+  private usedTeams: Set<Team> = new Set<Team>();
   countClubs: number = 0;
   countUsers: number = 0;
   rule = '';
@@ -105,7 +105,7 @@ export class ClubService {
     return clubsFiltered;
   }
 
-  generateClubBuRule(): User[] {
+  generateClubByRule(): User[] {
     this.users = this.generateUsers();
     if (this.rule === 'Rules of stars') {
       this.assignTeamsToUsers(this.users);
@@ -115,9 +115,21 @@ export class ClubService {
   }
 
   swapTeam(user: User, oldTeam: Team, newTeam: Team): void {
+    if (!user.teams.includes(oldTeam)) {
+      console.error('Old team not found in user teams');
+      return;
+    }
+    if (this.usedTeams.has(newTeam)) {
+      console.error('New team is already in use');
+      return;
+    }
     user.teams = user.teams.map((team) => (team === oldTeam ? newTeam : team));
     this.usedTeams.delete(oldTeam);
     this.usedTeams.add(newTeam);
+  }
+
+  public isTeamUsed(team: Team): boolean {
+    return this.usedTeams.has(team);
   }
 
   private generateUsers(): User[] {
@@ -130,10 +142,12 @@ export class ClubService {
   }
 
   private assignTeamsToUsers(users: User[]): void {
+    // Assign teams to users based on star ratings
     users.forEach((user) => {
       let leaguesCopy = [...this.clubs];
       let assignedTeams = 0;
 
+      // Define star ranges for team selection
       const starRanges = [
         { max: 5, min: 4.5 },
         { max: 4.5, min: 4 },
@@ -143,9 +157,11 @@ export class ClubService {
       while (assignedTeams < this.countClubs) {
         let teamAssignedInThisRound = false;
 
+        // Iterate through star ranges to assign teams
         for (const starRange of starRanges) {
           if (assignedTeams >= this.countClubs) break;
 
+          // Find available leagues with teams in the current star range
           const availableLeagues = leaguesCopy.filter((league) =>
             league.teams.some(
               (team) =>
@@ -156,6 +172,7 @@ export class ClubService {
           );
 
           if (availableLeagues.length > 0) {
+            // Randomly select a league and team
             const selectedLeagueIndex = Math.floor(
               Math.random() * availableLeagues.length
             );
@@ -174,6 +191,7 @@ export class ClubService {
               );
               const selectedTeam = availableTeams[selectedTeamIndex];
 
+              // Assign the selected team to the user
               user.teams.push(selectedTeam);
               this.usedTeams.add(selectedTeam);
               leaguesCopy = leaguesCopy.filter((l) => l !== selectedLeague);
@@ -183,6 +201,7 @@ export class ClubService {
           }
         }
 
+        // If no team was assigned in this round, break the loop
         if (!teamAssignedInThisRound) break;
       }
     });

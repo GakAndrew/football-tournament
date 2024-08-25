@@ -64,7 +64,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   getAvailableTeams(team: Team): boolean {
-    return this.clubService.usedTeams.has(team);
+    return this.clubService.isTeamUsed(team);
   }
 
   getClub(team: Team): Team {

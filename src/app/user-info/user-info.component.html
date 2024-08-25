@@ -12,7 +12,7 @@
     </mat-card-header>
     <mat-card-content>
       <div *ngFor="let team of user.teams; let i = index" class="team-info">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Команда</mat-label>
           <mat-select [value]="getClub(user.teams[i])" (selectionChange)="onTeamChange(user, i, $event.value)">
             <mat-option *ngFor="let team of allTeams" [disabled]="getAvailableTeams(team)" [value]="team">
@@ -25,5 +25,7 @@
   </mat-card>
 </div>
 
-<button mat-raised-button color="primary" (click)="goBack()">back</button>
-<button mat-raised-button color="primary" (click)="goNext()">next</button>
+<div class="navigation-buttons">
+  <button mat-raised-button color="primary" (click)="goBack()">Назад</button>
+  <button mat-raised-button color="primary" (click)="goNext()">Далее</button>
+</div>
